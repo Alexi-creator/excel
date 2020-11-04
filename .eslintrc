@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint", // указываем что будет использоватся в качестве парсера(установленный пакет babel-eslint)
+  "env": {    // здесь обозначаем где применяем наш код
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "semi": "off", // отключаем указание ошибок для ; в js
+    "arrow-parens": "off",
+    "linebreak-style": "off",
+    "comma-dangle": "off",
+    "max-len": "off",
+    "no-multi-spaces": "off",
+    "require-jsdoc": "off"
+  },
+  "extends": ["eslint:recommended", "google"]   //  сслыемся за примером идельного кода(стиля) данная строка в githabe
+}
