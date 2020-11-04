@@ -34,13 +34,188 @@
     затем если разработка заканчивается то ветка разработки
     сливается с продакшен веткой
 
-    
+
+
+                Начинаем проект:
+
+      Создаем git проект и Инициализируем
+
+      создаем файл webpack.config.js
+
+      Инициализируем проект с зависимостями:
+
+        npm init
+
+
+      Webpack устнавливаем через npm:
+
+        npm install webpack webpack-cli --save-dev
+
+
+в package.json в 'scripts' пишем:
+
+"scripts": {
+  "start": "webpack",
+  "build": "webpack --mode production"
+}
+
+после чего у нас доступны коданда в консоле
+для запуска проекта в режиме разработки 'npm run start'
+и запуск билда проекта для продакшен 'npm run build'
+
+
+
+
+  далее в webpack.config.js
+
+начинаем прописывать и устанавливать webpack модули для работы
+это типа как в gulp так же через npm скачиваем и подключаем:
+
+// для работы с html файлами
+npm install --save-dev html-webpack-plugin
+
+npm install copy-webpack-plugin --save-dev
+
+// для очистки папки
+npm install --save-dev clean-webpack-plugin
+
+// для выноса css файла из js
+npm install --save-dev mini-css-extract-plugin
+
+
+
+  Все модули можно посмотреть на сайте webpack!
+
+
+  далее создаем файл index.html в папке src там должны лежать все
+  наши исходники, так мы указали в webpack.config.js
+
+  в нем пишем <div id='app' class='container'></div>
+
+
+
+  после чего если запустить команду start то в папке dist
+  у нас будет появляться boundle.js(это и есть наш главный файл index.js) и index.html с подключенным boundle.js
+
+
+
+
+            Loaders
+
+  Loaders это сущности которые пропускают через себя
+    разные расширения файлов например css и превращают их в js
+
+
+нам нужны:
+
+// для Sass в js
+npm install sass-loader sass --save-dev
+
+// для css
+npm install --save-dev css-loader
+
+
+подключаем их не как переменные а сразу в module и rules, но в scss лодере доп прописываем настройки
+
+
+  далее создаем файл index.scss в папке src/scss/
+
+
+теперь файлы scss переносятся в формат js и подключаются в
+основной файл js в формате css
 
 
 
 
 
 
+              далее работаем с babel
+
+    устанавливаем и подключаем так же как и др.
+
+npm install --save-dev babel-loader @babel/core
+npm install @babel/preset-env --save-dev
+npm install --save @babel/polyfill
+
+в package.json подключаем для кроссбраузерности:
+"browserslist": "> 0.25%, not dead",
+
+
+
+
+            далее работаем с режимами сборки
+
+    Это нужно для того чтобы знать что делать в разных режимах?
+    например минификация только тогда когда режим production
+
+  есть системная переменная, чтобы убедится что она правильно
+  работает устанавливаем модуль:
+
+    npm i -D cross-env  // данный пакет определяет какая операционная система
+
+    чтобы работать с этим пакетом в package.json пишем:
+    в script > start > cross-env NODE_ENV=development
+    в script > build > cross-env NODE_ENV=production
+
+    а в webpack.config создаем переменные:
+
+    - isProd
+    - isDev
+
+
+
+
+              devServer
+
+      для динамического обновления
+
+      устнавливаем:
+
+      npm install webpack-dev-server --save-dev
+
+      и прописываем в package.json в start:
+
+      "start": "webpack-dev-server --open" // --open это для автоматического открытия страницы в браузере
+
+      Может не зупустится!!! Это из-за пакетов, несовместимых с друг другом
+      работающий конфиг версий пакетов:
+
+      "webpack": "^4.41.2",
+      "webpack-cli": "^3.3.10",
+      "webpack-dev-server": "^3.9.0"
+
+
+
+
+
+                Далее Eslint для чистоты кода
+
+        npm i eslint eslint-loader babel-eslint --save-dev
+
+        так же пишем ф-ю для добавления лоадер eslint если в режиме разработки
+
+        далее в корне нашего приложения не в src создаем файл:
+         .eslintrc
+
+        где описываем базовую конфигурацию для eslinta
+        в частности правила по которым eslint не будет помечать ошибки
+
+        и .eslintingnore для игора
+
+
+
+        далее устанавливаем:
+
+        npm i --save-dev eslint-config-google
+
+        в eslintrc дописываем "extends": ["eslint:recommended", "google"]
+
+
+
+        в webstorm заходим в файл > settings
+        мануальально выбираем eslint из папки nide_modules куда мы его скачали через npm
+        и выбираем конфигурационный файл который обрабатывает его, это тот файл который мы создали: .eslintrc
+        в нем прописываем напимер правила на которые он не будет ругатся и подсвечивать красным в js коде
 
 
 
