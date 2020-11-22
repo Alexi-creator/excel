@@ -17,7 +17,8 @@ const jsLoaders = () => {
     {
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env']
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-class-properties'] // этот плагин обрабатывает babel, нужен он для поддержки полей классов static которые еще не поддерживаются браузерами
       }
     }
   ]
