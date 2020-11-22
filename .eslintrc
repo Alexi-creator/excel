@@ -12,7 +12,8 @@
     "comma-dangle": "off",
     "max-len": "off",
     "no-multi-spaces": "off",
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "operator-linebreak": "off"
   },
   "extends": ["eslint:recommended", "google"]   //  сслыемся за примером идельного кода(стиля) данная строка в githabe
 }
